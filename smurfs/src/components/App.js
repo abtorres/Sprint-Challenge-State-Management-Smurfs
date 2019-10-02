@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from 'axios';
-
+//Smur Context
 import SmurfContext from '../contexts/SmurfContext';
+import FormikSmurfForm from './SmurfForm/SmurfForm';
+
 function App() {
   const [smurfs, setSmurfs] = useState({});
 
@@ -10,11 +12,12 @@ function App() {
     axios.get('http://localhost:3333/smurfs')
       .then((res) => {
         setSmurfs(res)
+        console.log(res)
       })
       .catch((err) => {
         console.log(err)
       })
-  })
+  }, []);
 
     return (
       <div className="App">
@@ -22,9 +25,8 @@ function App() {
           <div>
             <h1>SMURFS! 2.0 W/ Redux</h1>
             <div>Welcome to your state management version of Smurfs!</div>
-            <div>Start inside of your `src/index.js` file!</div>
-            <div>Have fun!</div>
           </div>
+          <FormikSmurfForm />
         </SmurfContext.Provider>
       </div>
     );
